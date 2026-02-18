@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Responsive Blog Layout</title>
+
+    <style>
+       
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: Arial, Helvetica, sans-serif;
+            background-color: #f4f6f9;
+            line-height: 1.6;
+        }
+
+        
+        header {
+            background-color: #222;
+            color: white;
+            text-align: center;
+            padding: 1.5rem;
+            letter-spacing: 1px;
+        }
+  
+        main {
+            width: 90%;
+            margin: 2rem auto;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1.5rem;
+        }
+        
+        .card {
+            background-color: white;
+            padding: 1.5rem;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            flex: 1 1 30%;    
+            min-width: 250px;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+
+        .card h2 {
+            font-size: 1.4rem;
+            margin-bottom: 0.8rem;
+            color: #333;
+        }
+
+        .card p {
+            font-size: 0.95rem;
+            margin-bottom: 1rem;
+            color: #3f3b3b;
+        }
+
+        .card button {
+            align-self: flex-start;
+            padding: 0.6rem 1rem;
+            border: none;
+            background-color: #0077cc;
+            color: white;
+            border-radius: 5px;
+            cursor: pointer;
+            font-weight: bold;
+        }
+
+        .card button:hover {
+            background-color: #005fa3;
+        }
+        @media (max-width: 900px) {
+            .card {
+                flex: 1 1 45%;
+            }
+        }
+
+        @media (max-width: 600px) {
+            main {
+                flex-direction: column;
+            }
+
+            .card {
+                flex: 1 1 100%;
+            }
+        }
+
+    </style>
+</head>
+<body>
+
+    <header>
+        <h1>My Tech Blog</h1>
+    </header>
+
+    <main>
+
+        <article class="card">
+            <h2>Understanding HTML Basics</h2>
+            <p>Learn the fundamentals of HTML structure, elements, and how to build clean web pages.</p>
+            <button>Read More</button>
+        </article>
+
+        <article class="card">
+            <h2>Getting Started with CSS</h2>
+            <p>Explore how CSS styles websites using colors, layouts, typography, and spacing techniques.</p>
+            <button>Read More</button>
+        </article>
+
+        <article class="card">
+            <h2>Responsive Design Principles</h2>
+            <p>Understand how to create websites that adapt seamlessly to mobile, tablet, and desktop screens.</p>
+            <button>Read More</button>
+        </article>
+
+        <article class="card">
+            <h2>Introduction to Flexbox</h2>
+            <p>Master modern layout techniques using Flexbox to build flexible and responsive UI designs.</p>
+            <button>Read More</button>
+        </article>
+
+    </main>
+
+</body>
+</html>
