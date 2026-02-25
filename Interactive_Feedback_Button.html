@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Interactive Feedback</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f6f8;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        .container {
+            background: white;
+            padding: 25px;
+            border-radius: 8px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+            width: 350px;
+            text-align: center;
+        }
+
+        textarea {
+            width: 100%;
+            height: 80px;
+            margin-bottom: 15px;
+            padding: 8px;
+            resize: none;
+        }
+
+        button {
+            padding: 8px 15px;
+            background-color: #007bff;
+            border: none;
+            color: white;
+            cursor: pointer;
+            border-radius: 4px;
+        }
+
+        button:hover {
+            background-color: #0056b3;
+        }
+
+        .message {
+            margin-top: 15px;
+            font-weight: bold;
+            color: green;
+        }
+
+        .error {
+            color: red;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h2>Feedback Form</h2>
+
+    <textarea id="feedbackInput" placeholder="Write your feedback here..."></textarea>
+
+    <button id="submitBtn">Submit Feedback</button>
+
+    <p id="responseMessage"></p>
+</div>
+
+<script>
+    const button = document.getElementById("submitBtn");
+    const feedbackInput = document.getElementById("feedbackInput");
+    const responseMessage = document.getElementById("responseMessage");
+
+    button.addEventListener("click", () => {
+
+        const feedbackText = feedbackInput.value.trim();
+
+        if (feedbackText === "") {
+            responseMessage.textContent = "Please enter feedback before submitting.";
+            responseMessage.className = "error";
+        } else {
+            responseMessage.textContent = "Thank you! Your feedback has been submitted successfully.";
+            responseMessage.className = "message";
+            
+            feedbackInput.value = "";
+        }
+
+    });
+
+</script>
+
+</body>
+</html>
