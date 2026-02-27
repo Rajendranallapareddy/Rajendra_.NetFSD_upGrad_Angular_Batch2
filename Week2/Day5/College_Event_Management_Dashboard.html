@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>College Event Dashboard</title>
+
+    <!-- Bootstrap 5 CDN -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
+
+<body class="bg-light">
+
+<!-- ================= NAVBAR ================= -->
+<nav class="navbar bg-primary" data-bs-theme="dark">
+    <div class="container-fluid">
+        <a class="navbar-brand fw-bold" href="#">College Events</a>
+
+        <button class="navbar-toggler" type="button"
+                data-bs-toggle="collapse"
+                data-bs-target="#navbarNav">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
+            <ul class="navbar-nav">
+                <li class="nav-item">
+                    <a class="nav-link active" href="#" id="dashboardLink">Dashboard</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#" id="eventsLink">Events</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#" id="participantsLink">Participants</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</nav>
+
+<!-- ================= MAIN CONTENT ================= -->
+<div class="container-fluid mt-4">
+    <div class="row g-4">
+
+        <!-- Sidebar -->
+        <div class="col-12 col-md-4 col-lg-3 col-xl-2">
+            <div class="card shadow-sm">
+                <div class="card-body">
+                    <h5 class="fw-bold">Quick Actions</h5>
+                    <button class="btn btn-success w-100 mt-3"
+                            data-bs-toggle="modal"
+                            data-bs-target="#addEventModal">
+                        + Add Event
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Content Area -->
+        <div class="col-12 col-md-8 col-lg-9 col-xl-10">
+
+            <!-- EVENTS SECTION -->
+            <div id="eventsSection">
+                <div class="card shadow-sm">
+                    <div class="card-body">
+                        <h4 class="fw-bold mb-4">Upcoming Events</h4>
+
+                        <div class="row g-4" id="eventContainer">
+
+                            <!-- Default Event -->
+                            <div class="col-12 col-sm-6 col-lg-4">
+                                <div class="card h-100">
+                                    <div class="card-body">
+                                        <h5 class="card-title">Tech Fest 2025</h5>
+                                        <p class="card-text">Coding competitions and workshops.</p>
+                                        <span class="badge bg-primary">2025-03-10</span>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+
+            <!-- PARTICIPANTS SECTION -->
+            <div id="participantsSection" class="d-none">
+                <div class="card shadow-sm">
+                    <div class="card-body">
+                        <h4 class="fw-bold">Participants</h4>
+                        <p>No participants registered yet.</p>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+</div>
+
+<!-- ================= MODAL ================= -->
+<div class="modal fade" id="addEventModal" tabindex="-1">
+    <div class="modal-dialog modal-lg modal-dialog-centered">
+        <div class="modal-content">
+
+            <div class="modal-header">
+                <h5 class="modal-title">Add New Event</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+            </div>
+
+            <div class="modal-body">
+                <form id="eventForm" class="needs-validation" novalidate>
+
+                    <div class="row g-3">
+
+                        <div class="col-md-6">
+                            <label class="form-label">Event Name</label>
+                            <input type="text" id="eventName" class="form-control" required>
+                            <div class="invalid-feedback">
+                                Please enter event name.
+                            </div>
+                        </div>
+
+                        <div class="col-md-6">
+                            <label class="form-label">Event Date</label>
+                            <input type="date" id="eventDate" class="form-control" required>
+                            <div class="invalid-feedback">
+                                Please select date.
+                            </div>
+                        </div>
+
+                        <div class="col-12">
+                            <label class="form-label">Description</label>
+                            <textarea id="eventDesc" class="form-control" rows="3" required></textarea>
+                            <div class="invalid-feedback">
+                                Please enter description.
+                            </div>
+                        </div>
+
+                    </div>
+
+                    <div class="mt-4 text-end">
+                        <button type="submit" class="btn btn-primary">Save Event</button>
+                    </div>
+
+                </form>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+<!-- Bootstrap JS Bundle -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+
+<!-- ================= JAVASCRIPT ================= -->
+<script>
+document.addEventListener("DOMContentLoaded", function () {
+
+    const eventForm = document.getElementById("eventForm");
+    const eventContainer = document.getElementById("eventContainer");
+    const eventName = document.getElementById("eventName");
+    const eventDate = document.getElementById("eventDate");
+    const eventDesc = document.getElementById("eventDesc");
+
+    const eventsSection = document.getElementById("eventsSection");
+    const participantsSection = document.getElementById("participantsSection");
+
+    const eventsLink = document.getElementById("eventsLink");
+    const participantsLink = document.getElementById("participantsLink");
+    const dashboardLink = document.getElementById("dashboardLink");
+
+    // ================= Save Event =================
+    eventForm.addEventListener("submit", function (e) {
+        e.preventDefault();
+
+        if (!eventForm.checkValidity()) {
+            eventForm.classList.add("was-validated");
+            return;
+        }
+
+        const newEvent = `
+            <div class="col-12 col-sm-6 col-lg-4">
+                <div class="card h-100">
+                    <div class="card-body">
+                        <h5 class="card-title">${eventName.value}</h5>
+                        <p class="card-text">${eventDesc.value}</p>
+                        <span class="badge bg-primary">${eventDate.value}</span>
+                    </div>
+                </div>
+            </div>
+        `;
+
+        eventContainer.insertAdjacentHTML("beforeend", newEvent);
+
+        eventForm.reset();
+        eventForm.classList.remove("was-validated");
+
+        const modal = bootstrap.Modal.getInstance(document.getElementById('addEventModal'));
+        modal.hide();
+    });
+
+    // ================= Navigation Switching =================
+    function showEvents() {
+        eventsSection.classList.remove("d-none");
+        participantsSection.classList.add("d-none");
+    }
+
+    function showParticipants() {
+        eventsSection.classList.add("d-none");
+        participantsSection.classList.remove("d-none");
+    }
+
+    eventsLink.addEventListener("click", showEvents);
+    dashboardLink.addEventListener("click", showEvents);
+    participantsLink.addEventListener("click", showParticipants);
+
+});
+</script>
+
+</body>
+</html>
