@@ -1,0 +1,147 @@
+@model ContactManagementDI.Models.ContactInfo
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Add New Contact</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+            background-color: #f4f4f4;
+        }
+        .container {
+            max-width: 600px;
+            margin: auto;
+            background: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+        }
+        h1 {
+            text-align: center;
+            color: #333;
+        }
+        .form-group {
+            margin-bottom: 15px;
+        }
+        label {
+            display: block;
+            font-weight: bold;
+            margin-bottom: 5px;
+        }
+        input, select {
+            width: 100%;
+            padding: 8px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            box-sizing: border-box;
+        }
+        input:focus {
+            outline: none;
+            border-color: #007bff;
+        }
+        .validation-message {
+            color: red;
+            font-size: 12px;
+            margin-top: 5px;
+        }
+        .button-group {
+            text-align: center;
+            margin-top: 20px;
+        }
+        .btn-submit {
+            padding: 10px 20px;
+            background-color: #28a745;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            margin-right: 10px;
+        }
+        .btn-submit:hover {
+            background-color: #218838;
+        }
+        .btn-cancel {
+            padding: 10px 20px;
+            background-color: #6c757d;
+            color: white;
+            text-decoration: none;
+            border-radius: 5px;
+            display: inline-block;
+        }
+        .btn-cancel:hover {
+            background-color: #5a6268;
+        }
+        .validation-summary {
+            color: red;
+            margin-bottom: 15px;
+        }
+        .di-badge {
+            text-align: center;
+            margin-top: 10px;
+            padding: 5px;
+            background-color: #17a2b8;
+            color: white;
+            border-radius: 5px;
+            font-size: 12px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>➕ Add New Contact</h1>
+        <div class="di-badge">⚡ Data will be saved via IContactService.AddContact()</div>
+        
+        <form asp-action="AddContact" method="post">
+            <div asp-validation-summary="All" class="validation-summary"></div>
+            
+            <div class="form-group">
+                <label asp-for="FirstName">First Name *</label>
+                <input asp-for="FirstName" />
+                <span asp-validation-for="FirstName" class="validation-message"></span>
+            </div>
+            
+            <div class="form-group">
+                <label asp-for="LastName">Last Name *</label>
+                <input asp-for="LastName" />
+                <span asp-validation-for="LastName" class="validation-message"></span>
+            </div>
+            
+            <div class="form-group">
+                <label asp-for="CompanyName">Company Name *</label>
+                <input asp-for="CompanyName" />
+                <span asp-validation-for="CompanyName" class="validation-message"></span>
+            </div>
+            
+            <div class="form-group">
+                <label asp-for="EmailId">Email ID *</label>
+                <input asp-for="EmailId" type="email" />
+                <span asp-validation-for="EmailId" class="validation-message"></span>
+            </div>
+            
+            <div class="form-group">
+                <label asp-for="MobileNo">Mobile No *</label>
+                <input asp-for="MobileNo" type="number" />
+                <span asp-validation-for="MobileNo" class="validation-message"></span>
+            </div>
+            
+            <div class="form-group">
+                <label asp-for="Designation">Designation *</label>
+                <input asp-for="Designation" />
+                <span asp-validation-for="Designation" class="validation-message"></span>
+            </div>
+            
+            <div class="button-group">
+                <button type="submit" class="btn-submit">💾 Save Contact</button>
+                <a href="@Url.Action("ShowContacts")" class="btn-cancel">❌ Cancel</a>
+            </div>
+        </form>
+    </div>
+    
+    <!-- Client-side validation scripts -->
+    <script src="https://ajax.aspnetcdn.com/ajax/jquery/jquery-3.6.0.min.js"></script>
+    <script src="https://ajax.aspnetcdn.com/ajax/jquery.validate/1.19.3/jquery.validate.min.js"></script>
+    <script src="https://ajax.aspnetcdn.com/ajax/mvc/5.2.3/jquery.validate.unobtrusive.min.js"></script>
+</body>
+</html>

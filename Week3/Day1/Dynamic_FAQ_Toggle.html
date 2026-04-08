@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Dynamic FAQ Section</title>
+
+    <!-- Bootstrap (Optional for Styling) -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- jQuery CDN -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+    <style>
+        body {
+            background-color: #f8f9fa;
+        }
+
+        .faq-container {
+            max-width: 700px;
+            margin: 60px auto;
+        }
+
+        .faq-item {
+            border-bottom: 1px solid #ddd;
+            padding: 15px 0;
+        }
+
+        .faq-question {
+            cursor: pointer;
+            font-weight: 600;
+            transition: 0.3s;
+        }
+
+        .faq-answer {
+            display: none;
+            padding-top: 10px;
+            color: #555;
+        }
+
+        .active-question {
+            color: #0d6efd;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container faq-container">
+    <h2 class="text-center mb-4">Frequently Asked Questions</h2>
+
+    <div class="faq-item">
+        <div class="faq-question">1. What courses do you offer?</div>
+        <div class="faq-answer">We offer Web Development, Data Science, AI/ML, and Full Stack programs.</div>
+    </div>
+
+    <div class="faq-item">
+        <div class="faq-question">2. What is the course duration?</div>
+        <div class="faq-answer">Course duration ranges from 3 to 6 months depending on the program.</div>
+    </div>
+
+    <div class="faq-item">
+        <div class="faq-question">3. Do you provide certificates?</div>
+        <div class="faq-answer">Yes, we provide industry-recognized certificates after completion.</div>
+    </div>
+
+    <div class="faq-item">
+        <div class="faq-question">4. Is there placement assistance?</div>
+        <div class="faq-answer">Yes, we provide placement assistance and mock interviews.</div>
+    </div>
+
+    <div class="faq-item">
+        <div class="faq-question">5. Are classes online or offline?</div>
+        <div class="faq-answer">We provide both online and offline learning options.</div>
+    </div>
+
+</div>
+
+<script>
+$(document).ready(function(){
+
+    $(".faq-question").click(function(){
+
+        // Toggle current answer
+        $(this).next(".faq-answer").slideToggle(300);
+
+        // Highlight selected question
+        $(this).toggleClass("active-question");
+
+        // Optional: Close other open answers
+        $(".faq-question").not(this).removeClass("active-question");
+        $(".faq-answer").not($(this).next()).slideUp(300);
+
+    });
+
+});
+</script>
+
+</body>
+</html>

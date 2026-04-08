@@ -1,0 +1,179 @@
+@model List<DataAccessLayer.Models.ContactInfo>
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Contact Management System</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+            background-color: #f4f4f4;
+        }
+        .container {
+            max-width: 1300px;
+            margin: auto;
+            background: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+        }
+        h1 {
+            text-align: center;
+            color: #333;
+        }
+        .menu {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        .menu a {
+            display: inline-block;
+            margin: 0 10px;
+            padding: 10px 20px;
+            background-color: #007bff;
+            color: white;
+            text-decoration: none;
+            border-radius: 5px;
+        }
+        .menu a:hover {
+            background-color: #0056b3;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+        th, td {
+            border: 1px solid #ddd;
+            padding: 10px;
+            text-align: left;
+        }
+        th {
+            background-color: #007bff;
+            color: white;
+        }
+        tr:nth-child(even) {
+            background-color: #f2f2f2;
+        }
+        .actions a {
+            margin-right: 10px;
+            text-decoration: none;
+            padding: 5px 10px;
+            border-radius: 3px;
+        }
+        .edit {
+            background-color: #ffc107;
+            color: #333;
+        }
+        .details {
+            background-color: #17a2b8;
+            color: white;
+        }
+        .delete {
+            background-color: #dc3545;
+            color: white;
+        }
+        .search-box {
+            text-align: center;
+            margin-top: 20px;
+            padding: 15px;
+            background-color: #e9ecef;
+            border-radius: 5px;
+        }
+        .search-box input {
+            padding: 8px;
+            width: 200px;
+            margin-right: 10px;
+        }
+        .search-box button {
+            padding: 8px 15px;
+            background-color: #28a745;
+            color: white;
+            border: none;
+            border-radius: 3px;
+            cursor: pointer;
+        }
+        .count {
+            margin-top: 20px;
+            font-weight: bold;
+            text-align: center;
+        }
+        .badge {
+            text-align: center;
+            margin-top: 10px;
+            padding: 5px;
+            background-color: #6c757d;
+            color: white;
+            border-radius: 5px;
+            font-size: 12px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>📞 Contact Management System</h1>
+        <div class="badge">🏗️ Layered Architecture | Repository Pattern | DI | EF Core</div>
+        
+        <div class="menu">
+            <a href="@Url.Action("ShowContacts")">🏠 Home</a>
+            <a href="@Url.Action("AddContact")">➕ Add New Contact</a>
+        </div>
+
+        <div class="search-box">
+            <h3>🔍 Search Contact by ID</h3>
+            <form action="@Url.Action("GetContactById")" method="get">
+                <input type="number" name="id" placeholder="Enter Contact ID" required />
+                <button type="submit">Search</button>
+            </form>
+        </div>
+
+        <h2>📋 All Contacts</h2>
+        
+        @if (Model.Count == 0)
+        {
+            <p style="text-align:center; color:red;">No contacts found!</p>
+        }
+        else
+        {
+            <table>
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>First Name</th>
+                        <th>Last Name</th>
+                        <th>Email</th>
+                        <th>Mobile</th>
+                        <th>Designation</th>
+                        <th>Company</th>
+                        <th>Department</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var contact in Model)
+                    {
+                        <tr>
+                            <td>@contact.ContactId</td>
+                            <td>@contact.FirstName</td>
+                            <td>@contact.LastName</td>
+                            <td>@contact.EmailId</td>
+                            <td>@contact.MobileNo</td>
+                            <td>@contact.Designation</td>
+                            <td>@contact.Company?.CompanyName</td>
+                            <td>@contact.Department?.DepartmentName</td>
+                            <td class="actions">
+                                <a href="@Url.Action("GetContactById", new { id = contact.ContactId })" class="details">View</a>
+                                <a href="@Url.Action("EditContact", new { id = contact.ContactId })" class="edit">Edit</a>
+                                <a href="@Url.Action("DeleteContact", new { id = contact.ContactId })" class="delete">Delete</a>
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+            <div class="count">
+                Total Contacts: @Model.Count
+            </div>
+        }
+    </div>
+</body>
+</html>
