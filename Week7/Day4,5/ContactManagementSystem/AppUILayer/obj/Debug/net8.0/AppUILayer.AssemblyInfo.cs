@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("AppUILayer")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+d72d708b3ae5ed52e8d902cf009cb4713e68428b")]
 [assembly: System.Reflection.AssemblyProductAttribute("AppUILayer")]
 [assembly: System.Reflection.AssemblyTitleAttribute("AppUILayer")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
